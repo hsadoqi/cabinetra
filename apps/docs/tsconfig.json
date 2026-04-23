@@ -1,7 +1,6 @@
 {
   "extends": "@cabinetra/typescript-config/nextjs.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
     },

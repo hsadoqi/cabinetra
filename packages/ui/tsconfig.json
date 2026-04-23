@@ -1,7 +1,6 @@
 {
   "extends": "@cabinetra/typescript-config/react-library.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "outDir": "dist",
     "paths": {
       "@cabinetra/ui": ["./src/index.ts"],
