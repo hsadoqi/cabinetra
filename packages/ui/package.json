@@ -4,20 +4,22 @@
   "private": true,
   "exports": {
     ".": "./src/index.ts",
-    "./button": "./src/primitives/button.tsx",
-    "./components/*": "./src/components/*",
+    "./components/*": "./src/components/*.tsx",
     "./components": "./src/components/index.ts",
     "./hooks/*": "./src/hooks/*",
     "./lib/*": "./src/lib/*",
-    "./primitives/*": "./src/primitives/*",
+    "./primitives/*": "./src/primitives/*.tsx",
     "./primitives": "./src/primitives/index.ts",
     "./styles.css": "./src/styles/globals.css"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
+    "sync:exports": "node ./scripts/sync-exports.mjs",
+    "shadcn:add": "node ./scripts/shadcn-add.mjs",
     "check-types": "tsc --noEmit",
-    "build": "tsc -p tsconfig.json"
+    "build": "node ./scripts/sync-exports.mjs && tsc -p tsconfig.json",
+    "dev": "node ./scripts/sync-exports.mjs && tsc -p tsconfig.json --watch"
   },
   "devDependencies": {
     "@cabinetra/eslint-config": "workspace:*",
@@ -31,6 +33,7 @@
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "label": "^0.2.2",
     "radix-ui": "^1.4.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
