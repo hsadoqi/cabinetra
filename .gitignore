@@ -40,3 +40,4 @@ yarn-error.log*
 # Management
 .lh
 .private
+.copilot
