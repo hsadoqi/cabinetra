@@ -1,6 +1,11 @@
 import type { ClientRecord } from "./types"
+import { InMemoryClientRepository, setClientRepository, getClientRepository } from "./repository"
 
-export const clients: ClientRecord[] = [
+/**
+ * Seed data for clients
+ * Used to initialize the repository on startup
+ */
+const SEED_CLIENTS: ClientRecord[] = [
     {
         id: "CL-0001",
         name: "Atlas SARL",
@@ -71,6 +76,50 @@ export const clients: ClientRecord[] = [
     },
 ]
 
+/**
+ * Initialize the client repository with seed data
+ * This is called on module load to set up the data store
+ */
+function initializeRepository(): void {
+    const seedWithVersions = SEED_CLIENTS.map((client) => ({
+        ...client,
+        _version: 1,
+    }))
+    const repository = new InMemoryClientRepository(seedWithVersions)
+    setClientRepository(repository)
+}
+
+// Initialize repository on module load
+initializeRepository()
+
+/**
+ * Get all clients from the repository
+ * @deprecated Use repository directly via getClientRepository()
+ * Kept for backwards compatibility
+ */
+export function getClients(): ClientRecord[] {
+    const repo = getClientRepository()
+    return repo.findAll()
+}
+
+/**
+ * Re-export for backwards compatibility
+ * Deprecated: Use getClientRepository().findAll() instead
+ */
+export const clients: ClientRecord[] = new Proxy([], {
+    get(target, prop) {
+        if (prop === "find" || prop === "filter" || prop === Symbol.iterator) {
+            return Reflect.get(getClients(), prop)
+        }
+        return Reflect.get(getClients(), prop)
+    },
+})
+
+/**
+ * Get a client by ID from the repository
+ */
 export function getClientById(id: string): ClientRecord | null {
-    return clients.find((client) => client.id === id) ?? null
+    const repo = getClientRepository()
+    const client = repo.findById(id)
+    return client ? (({ _version, ...rest }: any) => rest)(client) : null
 }

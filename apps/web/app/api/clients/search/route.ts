@@ -1,6 +1,6 @@
 import type { ClientStatus, Regime } from "@cabinetra/domain-clients"
 import { NextRequest, NextResponse } from "next/server"
-import { clients, isClientStatus, isRegime } from "@cabinetra/domain-clients"
+import { getClientRepository, isClientStatus, isRegime } from "@cabinetra/domain-clients"
 
 /**
  * GET /api/clients/search
@@ -67,6 +67,9 @@ export async function GET(request: NextRequest) {
         }
 
         // Apply filters
+        const repo = getClientRepository()
+        const clients = repo.findAll()
+
         const filtered = clients.filter((client) => {
             // Exclude archived clients by default (unless explicitly requested)
             if (client.archivedAt && !searchParams.get("includeArchived")) {

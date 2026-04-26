@@ -8,6 +8,16 @@ export { STATUS_CONFIG, STATUS_COLORS, REGIME_LABELS } from "./constants"
 export { clients, getClientById } from "./data"
 export { isValidStatusFilter, isValidRegimeFilter, isValidClientStatus, isValidRegime } from "./utils"
 
+// Repository (persistence abstraction)
+export {
+    getClientRepository,
+    setClientRepository,
+    InMemoryClientRepository,
+    type IClientRepository,
+    type ClientWithVersion,
+    type RepositoryTransaction,
+} from "./repository"
+
 // Validation
 export {
     validateClientId,

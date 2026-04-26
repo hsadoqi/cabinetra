@@ -2,12 +2,11 @@ import type { CreateClientInput, UpdateClientInput } from "./validation"
 import { validateCreateClientInput, validateUpdateClientInput } from "./validation"
 
 import type { ClientRecord } from "./types"
-import { clients } from "./data"
+import { getClientRepository } from "./repository"
 
 /**
  * CRUD mutation operations for client management
- * These are designed to work with in-memory data for now,
- * but can easily transition to server actions or API calls
+ * All mutations use the repository abstraction for persistence
  */
 
 export interface MutationResult<T = ClientRecord> {
@@ -15,21 +14,6 @@ export interface MutationResult<T = ClientRecord> {
     data?: T
     error?: string
     errors?: Array<{ field: string; message: string }>
-}
-
-/**
- * Generate next client ID
- * In production, this would come from the backend/database
- */
-function generateClientId(): string {
-    const maxNum = Math.max(
-        ...clients.map((c) => {
-            const match = c.id.match(/CL-(\d+)/)
-            return match ? parseInt(match[1]!, 10) : 0
-        })
-    )
-    const nextNum = (maxNum + 1).toString().padStart(4, "0")
-    return `CL-${nextNum}`
 }
 
 /**
@@ -45,31 +29,37 @@ export function createClient(input: CreateClientInput): MutationResult<ClientRec
         }
     }
 
-    const newClient: ClientRecord = {
-        id: generateClientId(),
-        name: input.name,
-        ice: input.ice,
-        legalForm: input.legalForm,
-        regime: input.regime,
-        status: input.status,
-        monthlyRevenueMad: input.monthlyRevenueMad,
-        monthlyRevenueDeltaPct: 0,
-        pendingDeclarations: input.pendingDeclarations ?? 0,
-        pendingDeclarationsDelta: 0,
-        unreconciledEntries: input.unreconciledEntries ?? 0,
-        unreconciledEntriesDelta: 0,
-        employeeCount: input.employeeCount ?? 0,
-        employeeCountDelta: 0,
-        lastUpdatedAt: new Date().toISOString(),
-        // New clients are not archived
-        archivedAt: undefined,
-    }
+    try {
+        const repo = getClientRepository()
+        const id = repo.getNextClientId()
 
-    clients.push(newClient)
+        const newClient = repo.create({
+            id,
+            name: input.name,
+            ice: input.ice,
+            legalForm: input.legalForm,
+            regime: input.regime,
+            status: input.status,
+            monthlyRevenueMad: input.monthlyRevenueMad,
+            monthlyRevenueDeltaPct: 0,
+            pendingDeclarations: input.pendingDeclarations ?? 0,
+            pendingDeclarationsDelta: 0,
+            unreconciledEntries: input.unreconciledEntries ?? 0,
+            unreconciledEntriesDelta: 0,
+            employeeCount: input.employeeCount ?? 0,
+            employeeCountDelta: 0,
+            archivedAt: undefined,
+        })
 
-    return {
-        success: true,
-        data: newClient,
+        return {
+            success: true,
+            data: newClient,
+        }
+    } catch (error) {
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : "Failed to create client",
+        }
     }
 }
 
@@ -86,40 +76,42 @@ export function updateClient(id: string, input: UpdateClientInput): MutationResu
         }
     }
 
-    const clientIndex = clients.findIndex((c) => c.id === id)
-    if (clientIndex === -1) {
+    try {
+        const repo = getClientRepository()
+        const currentClient = repo.findById(id)
+
+        if (!currentClient) {
+            return {
+                success: false,
+                error: `Client with ID ${id} not found`,
+            }
+        }
+
+        const updates: Partial<ClientRecord> = {
+            name: input.name ?? currentClient.name,
+            ice: input.ice ?? currentClient.ice,
+            legalForm: input.legalForm ?? currentClient.legalForm,
+            regime: input.regime ?? currentClient.regime,
+            status: input.status ?? currentClient.status,
+            monthlyRevenueMad: input.monthlyRevenueMad ?? currentClient.monthlyRevenueMad,
+            pendingDeclarations: input.pendingDeclarations ?? currentClient.pendingDeclarations,
+            unreconciledEntries: input.unreconciledEntries ?? currentClient.unreconciledEntries,
+            employeeCount: input.employeeCount ?? currentClient.employeeCount,
+            // Handle archivedAt field: explicit null unarchives, undefined keeps current state, string sets it
+            archivedAt: input.archivedAt !== undefined ? input.archivedAt ?? undefined : currentClient.archivedAt,
+        }
+
+        const updated = repo.update(id, updates, currentClient._version)
+
+        return {
+            success: true,
+            data: updated,
+        }
+    } catch (error) {
         return {
             success: false,
-            error: `Client with ID ${id} not found`,
+            error: error instanceof Error ? error.message : "Failed to update client",
         }
-    }
-
-    const currentClient = clients[clientIndex]!
-    const updatedClient: ClientRecord = {
-        id: currentClient.id,
-        name: input.name ?? currentClient.name,
-        ice: input.ice ?? currentClient.ice,
-        legalForm: input.legalForm ?? currentClient.legalForm,
-        regime: input.regime ?? currentClient.regime,
-        status: input.status ?? currentClient.status,
-        monthlyRevenueMad: input.monthlyRevenueMad ?? currentClient.monthlyRevenueMad,
-        monthlyRevenueDeltaPct: currentClient.monthlyRevenueDeltaPct,
-        pendingDeclarations: input.pendingDeclarations ?? currentClient.pendingDeclarations,
-        pendingDeclarationsDelta: currentClient.pendingDeclarationsDelta,
-        unreconciledEntries: input.unreconciledEntries ?? currentClient.unreconciledEntries,
-        unreconciledEntriesDelta: currentClient.unreconciledEntriesDelta,
-        employeeCount: input.employeeCount ?? currentClient.employeeCount,
-        employeeCountDelta: currentClient.employeeCountDelta,
-        lastUpdatedAt: new Date().toISOString(),
-        // Handle archivedAt field: explicit null unarchives, undefined keeps current state, string sets it
-        archivedAt: input.archivedAt !== undefined ? input.archivedAt ?? undefined : currentClient.archivedAt,
-    }
-
-    clients[clientIndex] = updatedClient
-
-    return {
-        success: true,
-        data: updatedClient,
     }
 }
 
@@ -127,36 +119,43 @@ export function updateClient(id: string, input: UpdateClientInput): MutationResu
  * Archive a client (soft delete - sets status to archived-like state)
  */
 export function archiveClient(id: string): MutationResult<ClientRecord> {
-    const clientIndex = clients.findIndex((c) => c.id === id)
-    if (clientIndex === -1) {
+    try {
+        const repo = getClientRepository()
+        const currentClient = repo.findById(id)
+
+        if (!currentClient) {
+            return {
+                success: false,
+                error: `Client with ID ${id} not found`,
+            }
+        }
+
+        // If already archived, return error
+        if (currentClient.archivedAt) {
+            return {
+                success: false,
+                error: `Client ${id} is already archived`,
+            }
+        }
+
+        const now = new Date().toISOString()
+        const archived = repo.update(
+            id,
+            {
+                archivedAt: now,
+            },
+            currentClient._version
+        )
+
+        return {
+            success: true,
+            data: archived,
+        }
+    } catch (error) {
         return {
             success: false,
-            error: `Client with ID ${id} not found`,
+            error: error instanceof Error ? error.message : "Failed to archive client",
         }
-    }
-
-    const currentClient = clients[clientIndex]!
-
-    // If already archived, return error
-    if (currentClient.archivedAt) {
-        return {
-            success: false,
-            error: `Client ${id} is already archived`,
-        }
-    }
-
-    const now = new Date().toISOString()
-    const archivedClient: ClientRecord = {
-        ...currentClient,
-        archivedAt: now,
-        lastUpdatedAt: now,
-    }
-
-    clients[clientIndex] = archivedClient
-
-    return {
-        success: true,
-        data: archivedClient,
     }
 }
 
@@ -164,18 +163,17 @@ export function archiveClient(id: string): MutationResult<ClientRecord> {
  * Delete a client (hard delete)
  */
 export function deleteClient(id: string): MutationResult<void> {
-    const clientIndex = clients.findIndex((c) => c.id === id)
-    if (clientIndex === -1) {
+    try {
+        const repo = getClientRepository()
+        repo.delete(id)
+        return {
+            success: true,
+        }
+    } catch (error) {
         return {
             success: false,
-            error: `Client with ID ${id} not found`,
+            error: error instanceof Error ? error.message : "Failed to delete client",
         }
-    }
-
-    clients.splice(clientIndex, 1)
-
-    return {
-        success: true,
     }
 }
 
@@ -183,23 +181,19 @@ export function deleteClient(id: string): MutationResult<void> {
  * Batch delete clients
  */
 export function deleteClientsBatch(ids: string[]): MutationResult<{ deleted: number; failed: number }> {
-    let deleted = 0
-    let failed = 0
-
-    for (const id of ids) {
-        const clientIndex = clients.findIndex((c) => c.id === id)
-        if (clientIndex === -1) {
-            failed++
-        } else {
-            clients.splice(clientIndex, 1)
-            deleted++
+    try {
+        const repo = getClientRepository()
+        const result = repo.deleteBatch(ids)
+        return {
+            success: result.failed === 0,
+            data: result,
+            error: result.failed > 0 ? `Failed to delete ${result.failed} client(s)` : undefined,
         }
-    }
-
-    return {
-        success: failed === 0,
-        data: { deleted, failed },
-        error: failed > 0 ? `Failed to delete ${failed} client(s)` : undefined,
+    } catch (error) {
+        return {
+            success: false,
+            error: error instanceof Error ? error.message : "Failed to delete clients",
+        }
     }
 }
 
@@ -207,17 +201,28 @@ export function deleteClientsBatch(ids: string[]): MutationResult<{ deleted: num
  * Export client data (for CSV/Excel export)
  */
 export function exportClient(id: string): MutationResult<ClientRecord> {
-    const client = clients.find((c) => c.id === id)
-    if (!client) {
+    try {
+        const repo = getClientRepository()
+        const client = repo.findById(id)
+
+        if (!client) {
+            return {
+                success: false,
+                error: `Client with ID ${id} not found`,
+            }
+        }
+
+        // Remove version info from exported data
+        const { _version, ...exported } = client
+        return {
+            success: true,
+            data: exported,
+        }
+    } catch (error) {
         return {
             success: false,
-            error: `Client with ID ${id} not found`,
+            error: error instanceof Error ? error.message : "Failed to export client",
         }
-    }
-
-    return {
-        success: true,
-        data: client,
     }
 }
 
@@ -225,17 +230,28 @@ export function exportClient(id: string): MutationResult<ClientRecord> {
  * Bulk export clients
  */
 export function exportClients(ids: string[]): MutationResult<ClientRecord[]> {
-    const exported = clients.filter((c) => ids.includes(c.id))
+    try {
+        const repo = getClientRepository()
+        const allClients = repo.findAll()
+        const exported = allClients
+            .filter((c) => ids.includes(c.id))
+            .map(({ _version, ...c }) => c)
 
-    if (exported.length === 0) {
+        if (exported.length === 0) {
+            return {
+                success: false,
+                error: "No clients found to export",
+            }
+        }
+
+        return {
+            success: true,
+            data: exported,
+        }
+    } catch (error) {
         return {
             success: false,
-            error: "No clients found to export",
+            error: error instanceof Error ? error.message : "Failed to export clients",
         }
-    }
-
-    return {
-        success: true,
-        data: exported,
     }
 }
