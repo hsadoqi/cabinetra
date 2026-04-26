@@ -1,0 +1,24 @@
+{
+    "extends": "@cabinetra/typescript-config/react-library.json",
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "src",
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "@cabinetra/domain-clients": [
+                "./src/index.ts"
+            ],
+            "@cabinetra/domain-clients/*": [
+                "./src/*"
+            ]
+        },
+        "strictNullChecks": true
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
