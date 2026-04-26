@@ -56,8 +56,6 @@
     "next-env.d.ts",
     "next.config.js",
     ".next/types/**/*.ts"
-,
-"../../packages/ui/components/src/providers/toast-provider.tsx"
-],
+  ],
   "exclude": ["node_modules"]
 }

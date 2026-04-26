@@ -17,15 +17,24 @@
       ],
       "env": [
         "NODE_ENV"
+      ],
+      "outputs": [
+        ".eslintcache"
       ]
     },
     "test": {
       "dependsOn": [
         "^test"
+      ],
+      "outputs": [
+        "coverage/**"
       ]
     },
     "check-types": {
-      "dependsOn": ["^check-types"]
+      "dependsOn": [
+        "^check-types"
+      ],
+      "outputs": []
     },
     "dev": {
       "cache": false,
