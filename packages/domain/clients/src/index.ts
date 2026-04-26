@@ -2,7 +2,7 @@
 export type { ClientRecord, ClientStatus, Regime, ClientListItem, StatusFilter, RegimeFilter } from "./types"
 
 // Constants
-export { STATUS_CONFIG, STATUS_COLORS, REGIME_LABELS } from "./constants"
+export { CLIENT_STATUSES, CLIENT_REGIMES, STATUS_CONFIG, STATUS_COLORS, REGIME_LABELS } from "./constants"
 
 // Data & Utilities
 export { clients, getClientById } from "./data"

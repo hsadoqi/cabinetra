@@ -1,5 +1,6 @@
 "use client"
 
+import { CLIENT_REGIMES, CLIENT_STATUSES } from "@cabinetra/domain-clients"
 import type { ClientStatus, Regime, RegimeFilter, StatusFilter } from "@cabinetra/domain-clients"
 import { Filter, X } from "lucide-react"
 import { Popover, PopoverContent, PopoverTrigger } from "@cabinetra/ui-components/primitives"
@@ -30,13 +31,11 @@ const regimeOptions: { value: Regime; labelKey: string }[] = [
 
 // Validation functions to ensure filter values are valid
 function isValidStatusFilter(value: unknown): value is StatusFilter {
-    const validValues: (StatusFilter)[] = ["", "active", "pending_vat", "review", "overdue"]
-    return typeof value === "string" && validValues.includes(value as StatusFilter)
+    return typeof value === "string" && (value === "" || CLIENT_STATUSES.includes(value as ClientStatus))
 }
 
 function isValidRegimeFilter(value: unknown): value is RegimeFilter {
-    const validValues: (RegimeFilter)[] = ["", "normal", "simplified"]
-    return typeof value === "string" && validValues.includes(value as RegimeFilter)
+    return typeof value === "string" && (value === "" || CLIENT_REGIMES.includes(value as Regime))
 }
 
 function ClientsFiltersComponent({

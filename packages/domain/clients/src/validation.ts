@@ -1,4 +1,5 @@
 import type { ClientRecord, ClientStatus, Regime } from "./types"
+import { CLIENT_STATUSES, CLIENT_REGIMES } from "./constants"
 
 /**
  * Validation schemas for client operations
@@ -14,16 +15,14 @@ export interface ClientValidationError {
  * Type guard: Check if value is a valid ClientStatus
  */
 export function isClientStatus(value: unknown): value is ClientStatus {
-    const validStatuses: ClientStatus[] = ["active", "pending_vat", "review", "overdue"]
-    return typeof value === "string" && validStatuses.includes(value as ClientStatus)
+    return typeof value === "string" && CLIENT_STATUSES.includes(value as ClientStatus)
 }
 
 /**
  * Type guard: Check if value is a valid Regime
  */
 export function isRegime(value: unknown): value is Regime {
-    const validRegimes: Regime[] = ["normal", "simplified"]
-    return typeof value === "string" && validRegimes.includes(value as Regime)
+    return typeof value === "string" && CLIENT_REGIMES.includes(value as Regime)
 }
 
 /**
@@ -104,11 +103,10 @@ export function validateRegime(regime: unknown): { valid: boolean; error?: strin
     if (typeof regime !== "string") {
         return { valid: false, error: "Regime must be a string" }
     }
-    const validRegimes: Regime[] = ["normal", "simplified"]
-    if (!validRegimes.includes(regime as Regime)) {
+    if (!CLIENT_REGIMES.includes(regime as Regime)) {
         return {
             valid: false,
-            error: `Regime must be one of: ${validRegimes.join(", ")}`,
+            error: `Regime must be one of: ${CLIENT_REGIMES.join(", ")}`,
         }
     }
     return { valid: true }
@@ -121,11 +119,10 @@ export function validateClientStatus(status: unknown): { valid: boolean; error?:
     if (typeof status !== "string") {
         return { valid: false, error: "Status must be a string" }
     }
-    const validStatuses: ClientStatus[] = ["active", "pending_vat", "review", "overdue"]
-    if (!validStatuses.includes(status as ClientStatus)) {
+    if (!CLIENT_STATUSES.includes(status as ClientStatus)) {
         return {
             valid: false,
-            error: `Status must be one of: ${validStatuses.join(", ")}`,
+            error: `Status must be one of: ${CLIENT_STATUSES.join(", ")}`,
         }
     }
     return { valid: true }

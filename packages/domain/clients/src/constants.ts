@@ -1,6 +1,18 @@
 import { AlertCircle, AlertTriangle, CheckCircle2, FileWarning } from "lucide-react"
 
-import type { ClientStatus } from "./types"
+import type { ClientStatus, Regime } from "./types"
+
+/**
+ * Centralized list of all valid client statuses
+ * Use this as the single source of truth for status validation
+ */
+export const CLIENT_STATUSES: ReadonlyArray<ClientStatus> = ["active", "pending_vat", "review", "overdue"]
+
+/**
+ * Centralized list of all valid regimes
+ * Use this as the single source of truth for regime validation
+ */
+export const CLIENT_REGIMES: ReadonlyArray<Regime> = ["normal", "simplified"]
 
 export const STATUS_CONFIG: Record<
     ClientStatus,
