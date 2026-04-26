@@ -11,7 +11,7 @@ export function Header({
         <header
             data-slot="header"
             className={cn(
-                "sticky top-0 z-30 w-full border-b border-border/70 bg-background/88 shadow-[0_1px_0_rgba(0,0,0,0.03)] backdrop-blur supports-[backdrop-filter]:bg-background/72",
+                "sticky top-0 z-30 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90",
                 className
             )}
             {...props}

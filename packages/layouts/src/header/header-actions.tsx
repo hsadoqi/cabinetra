@@ -9,7 +9,7 @@ export function HeaderActions({
         <div
             data-slot="header-actions"
             className={cn(
-                "ms-auto flex shrink-0 items-center gap-1.5 border-l border-border/70 pl-2.5 sm:gap-2 sm:pl-3",
+                "ml-auto flex shrink-0 items-center gap-0.5 sm:gap-1",
                 className
             )}
             {...props}

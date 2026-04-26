@@ -107,9 +107,10 @@ export function AppHeader({
                                 <Button
                                     variant="ghost"
                                     size="icon"
+                                    className="h-10 w-10"
                                     aria-label="Change language"
                                 >
-                                    <Languages />
+                                    <Languages className="h-4 w-4" />
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
@@ -136,9 +137,10 @@ export function AppHeader({
                                 <Button
                                     variant="ghost"
                                     size="icon"
+                                    className="h-10 w-10"
                                     aria-label="Change theme"
                                 >
-                                    {theme === "dark" ? <Moon /> : theme === "light" ? <Sun /> : <Monitor />}
+                                    {theme === "dark" ? <Moon className="h-4 w-4" /> : theme === "light" ? <Sun className="h-4 w-4" /> : <Monitor className="h-4 w-4" />}
                                 </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
@@ -151,15 +153,15 @@ export function AppHeader({
                                     onValueChange={(v: string) => onThemeChange?.(v as Theme)}
                                 >
                                     <DropdownMenuRadioItem value="light">
-                                        <Sun className="mr-2 size-4" />
+                                        <Sun className="mr-2 h-4 w-4" />
                                         Light
                                     </DropdownMenuRadioItem>
                                     <DropdownMenuRadioItem value="dark">
-                                        <Moon className="mr-2 size-4" />
+                                        <Moon className="mr-2 h-4 w-4" />
                                         Dark
                                     </DropdownMenuRadioItem>
                                     <DropdownMenuRadioItem value="system">
-                                        <Monitor className="mr-2 size-4" />
+                                        <Monitor className="mr-2 h-4 w-4" />
                                         System
                                     </DropdownMenuRadioItem>
                                 </DropdownMenuRadioGroup>
@@ -171,14 +173,15 @@ export function AppHeader({
                             <DropdownMenuTrigger asChild>
                                 <Button
                                     variant="ghost"
+                                    className="gap-2 h-10"
                                     aria-label="User menu"
                                 >
                                     {user ? (
-                                        <span className="flex size-8 items-center justify-center rounded-full bg-accent text-[11px] font-medium">
+                                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">
                                             {user.initials}
                                         </span>
                                     ) : (
-                                        <UserCircle />
+                                        <UserCircle className="h-4 w-4" />
                                     )}
                                     <span className="hidden text-sm font-medium text-foreground lg:inline-flex">
                                         {user?.name ?? "Account"}
@@ -198,18 +201,18 @@ export function AppHeader({
                                     </>
                                 )}
                                 <DropdownMenuItem>
-                                    <User className="mr-2 size-4" />
+                                    <User className="mr-2 h-4 w-4" />
                                     Profile
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
-                                    <Settings className="mr-2 size-4" />
+                                    <Settings className="mr-2 h-4 w-4" />
                                     Settings
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
                                     onClick={onLogout}
                                 >
-                                    <LogOut className="mr-2 size-4" />
+                                    <LogOut className="mr-2 h-4 w-4" />
                                     Log out
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
