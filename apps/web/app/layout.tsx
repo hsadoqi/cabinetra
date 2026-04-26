@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import { AppHeader } from "@/components/app-header";
+import { AppHeader } from "@/components/app-header/app-header";
 import {
   DEFAULT_LOCALE,
   getLocaleDirection,
