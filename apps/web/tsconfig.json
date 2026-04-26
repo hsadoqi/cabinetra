@@ -2,14 +2,29 @@
   "extends": "@cabinetra/typescript-config/nextjs.json",
   "compilerOptions": {
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ],
+      "@cabinetra/ui": [
+        "../../packages/ui/src/index.ts"
+      ],
+      "@cabinetra/ui/*": [
+        "../../packages/ui/src/*"
+      ],
+      "@cabinetra/layouts": [
+        "../../packages/layouts/src/index.ts"
+      ],
+      "@cabinetra/layouts/*": [
+        "../../packages/layouts/src/*"
+      ]
     },
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "**/*.ts",
@@ -17,6 +32,6 @@
     "next-env.d.ts",
     "next.config.js",
     ".next/types/**/*.ts"
-  ],
+],
   "exclude": ["node_modules"]
 }

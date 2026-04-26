@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "@cabinetra/ui": "workspace:*",
+    "@cabinetra/layouts": "workspace:*",
     "next": "16.2.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "lucide-react": "^1.11.0"
   },
   "devDependencies": {
     "@cabinetra/eslint-config": "workspace:*",
