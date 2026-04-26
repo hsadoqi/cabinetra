@@ -86,7 +86,7 @@ export default async function RootLayout({
       lang={initialLocale}
       dir={getLocaleDirection(initialLocale)}
       className={cn(
-        "bg-background text-foreground",
+        "h-screen bg-background text-foreground",
         inter.variable,
         notoArabic.variable,
         jetbrainsMono.variable,
@@ -100,10 +100,10 @@ export default async function RootLayout({
           {themeScript}
         </Script>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-full`}>
         <Providers initialTheme={initialTheme} initialLocale={initialLocale}>
           <AppHeader />
-          <main className="flex-1 min-h-0 overflow-hidden mx-auto w-full max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">{children}</main>
+          <main className="flex-1 min-h-0 flex flex-col w-full">{children}</main>
           <ClientSwitcherRoot />
         </Providers>
       </body>

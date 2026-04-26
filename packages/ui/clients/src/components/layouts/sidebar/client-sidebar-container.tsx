@@ -28,7 +28,7 @@ export function ClientSidebarContainer({
     }
 
     return (
-        <div className="flex flex-1 min-w-0">
+        <div className="flex h-full w-full min-w-0">
             <ClientSidebar
                 currentClient={activeClient}
                 onClearClient={onClearClient}

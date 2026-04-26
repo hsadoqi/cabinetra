@@ -88,7 +88,7 @@ export function ClientSidebar({
     return (
         <>
             <aside
-                className="hidden md:flex w-[248px] shrink-0 flex-col border-e border-sidebar-border bg-sidebar text-sidebar-foreground"
+                className="hidden md:flex w-[248px] shrink-0 h-full flex-col border-e border-sidebar-border bg-sidebar text-sidebar-foreground"
                 aria-label={tr("nav.mainAria")}
             >
                 <div className="shrink-0">
