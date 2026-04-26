@@ -12,6 +12,7 @@
         "build": "tsc -p tsconfig.json"
     },
     "dependencies": {
+        "@cabinetra/domain-clients": "workspace:*",
         "@cabinetra/ui-components": "workspace:*",
         "@cabinetra/platform-i18n": "workspace:*",
         "clsx": "^2.1.1",
