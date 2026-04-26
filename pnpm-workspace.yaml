@@ -2,5 +2,7 @@ packages:
   - "apps/web"
   - "apps/docs"
   - "packages/config/*"
+  - "packages/domain/*"
+  - "packages/feature/*"
   - "packages/platform/*"
   - "packages/ui/*"
