@@ -1,7 +1,7 @@
-import { clients, getClientById } from "@/lib/clients-data"
+import { clients, getClientById } from "@cabinetra/domain-clients"
 
 import { ClientDetailProviders } from "./client-detail-providers"
-import { ClientSidebarShell } from "@cabinetra/ui-layouts/sidebar/client-sidebar";
+import { ClientSidebarShell } from "@cabinetra/ui-clients";
 import { notFound } from "next/navigation"
 
 const ClientsLayout = async ({

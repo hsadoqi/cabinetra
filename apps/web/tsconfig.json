@@ -22,6 +22,24 @@
       ],
       "@cabinetra/ui-layouts/*": [
         "../../packages/ui/layouts/src/*"
+      ],
+      "@cabinetra/domain-clients": [
+        "../../packages/domain/clients/src/index.ts"
+      ],
+      "@cabinetra/domain-clients/*": [
+        "../../packages/domain/clients/src/*"
+      ],
+      "@cabinetra/ui-clients": [
+        "../../packages/ui/clients/src/index.ts"
+      ],
+      "@cabinetra/ui-clients/*": [
+        "../../packages/ui/clients/src/*"
+      ],
+      "@cabinetra/feature-clients": [
+        "../../packages/feature/clients/src/index.ts"
+      ],
+      "@cabinetra/feature-clients/*": [
+        "../../packages/feature/clients/src/*"
       ]
     },
     "plugins": [
@@ -38,6 +56,8 @@
     "next-env.d.ts",
     "next.config.js",
     ".next/types/**/*.ts"
+,
+"../../packages/ui/components/src/providers/toast-provider.tsx"
 ],
   "exclude": ["node_modules"]
 }

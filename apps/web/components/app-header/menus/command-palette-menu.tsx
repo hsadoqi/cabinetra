@@ -2,7 +2,9 @@ import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, C
 
 import { Translator } from "@/components/app-header/app-header"
 import { buildHeaderCommandGroups } from "@/lib/commands/registry"
+import { useMemo } from "react"
 import { useRouter } from "next/navigation"
+import { useToast } from "@cabinetra/ui-components/hooks/use-toast"
 
 interface CommandPaletteProps {
     open: boolean
@@ -12,11 +14,20 @@ interface CommandPaletteProps {
 
 export function CommandPaletteMenu({ open, setOpen, t }: CommandPaletteProps) {
     const router = useRouter()
-    const commandGroups = buildHeaderCommandGroups(t)
+    const { error: toastError } = useToast()
+    const commandGroups = useMemo(() => buildHeaderCommandGroups(t), [t])
 
-    function navigateTo(path: string) {
-        setOpen(false)
-        router.push(path)
+    async function navigateTo(path: string) {
+        try {
+            setOpen(false)
+            await router.push(path)
+        } catch (error) {
+            toastError(
+                t("command.navigationFailed" as never),
+                t("command.navigationFailedDescription" as never)
+            )
+            console.log("Navigation error:", error)
+        }
     }
 
     return (
