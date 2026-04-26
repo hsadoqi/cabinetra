@@ -4,7 +4,15 @@
         "outDir": "dist",
         "rootDir": "src",
         "strictNullChecks": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "@cabinetra/ui-layouts": [
+                "./src/index.ts"
+            ],
+            "@cabinetra/ui-layouts/*": [
+                "./src/*"
+            ]
+        }
     },
     "include": [
         "src"
