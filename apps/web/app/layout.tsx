@@ -6,12 +6,14 @@ import {
   getLocaleDirection,
   isLocale,
   LOCALE_COOKIE_NAME,
+  localeDefinitions,
   type Locale,
 } from "@cabinetra/platform-i18n";
 import type { Metadata } from "next";
 import { Providers } from "./providers";
 import Script from "next/script";
 import type { Theme } from "@cabinetra/ui-components/providers";
+import { getThemeBootstrapScript } from "@cabinetra/ui-components/lib/theme-bootstrap";
 import { cookies } from "next/headers";
 import localFont from "next/font/local";
 
@@ -36,30 +38,11 @@ export const metadata: Metadata = {
   description: "Cabinetra web application",
 };
 
-const themeScript = `
-  (() => {
-    const getCookie = (name) => document.cookie
-      .split("; ")
-      .find((cookie) => cookie.startsWith(name + "="))
-      ?.split("=")[1];
-    const root = document.documentElement;
-    const cookieTheme = getCookie("theme");
-    const cookieLocale = getCookie("${LOCALE_COOKIE_NAME}");
-    const theme = cookieTheme === "light" || cookieTheme === "dark" || cookieTheme === "system"
-      ? cookieTheme
-      : "system";
-    const locale = cookieLocale === "fr" || cookieLocale === "en" || cookieLocale === "ar"
-      ? cookieLocale
-      : "${DEFAULT_LOCALE}";
-    const resolvedTheme = theme === "system"
-      ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-      : theme;
-
-    root.classList.toggle("dark", resolvedTheme === "dark");
-    root.lang = locale;
-    root.dir = locale === "ar" ? "rtl" : "ltr";
-  })();
-`;
+const themeScript = getThemeBootstrapScript({
+  localeCookieName: LOCALE_COOKIE_NAME,
+  defaultLocale: DEFAULT_LOCALE,
+  locales: localeDefinitions.map((locale) => locale.code),
+});
 
 export default async function RootLayout({
   children,
@@ -91,7 +74,7 @@ export default async function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers initialTheme={initialTheme} initialLocale={initialLocale}>
           <AppHeader />
-          <main className="mx-auto w-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">{children}</main>
+          <main className="mx-auto w-full max-w-7xl px-4 pt-4 sm:px-6 lg:px-8 overflow-hidden">{children}</main>
         </Providers>
       </body>
     </html>

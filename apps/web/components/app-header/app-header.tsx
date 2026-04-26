@@ -10,8 +10,10 @@ import {
 } from "@cabinetra/ui-layouts/header"
 import { useI18n } from "@cabinetra/platform-i18n"
 import { useCommand, useTheme } from "@cabinetra/ui-components/providers"
+import { registerHeaderCommandPlugin } from "@/lib/commands/registry"
 
 import { AppBrandLogo } from "./app-brand-logo"
+import { accountCommandPlugin } from "@/lib/commands/plugins/account"
 import { UserMenu, type User } from './menus/user-menu';
 import { LanguageMenu } from "./menus/language-menu"
 import { ThemeMenu } from "./menus/theme-menu"
@@ -33,6 +35,12 @@ export function AppHeader({
     const { theme, setTheme } = useTheme()
     const { locale, setLocale, t } = useI18n()
 
+    React.useEffect(() => {
+        const unregister = registerHeaderCommandPlugin(accountCommandPlugin)
+
+        return () => unregister()
+    }, [])
+
     return (
         <>
             <Header>
@@ -43,6 +51,7 @@ export function AppHeader({
                     <HeaderSearch
                         placeholder={t("topbar.search.placeholder")}
                         shortcut="⌘K"
+                        expanded={open}
                         onClick={openCommand}
                     />
 
