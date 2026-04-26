@@ -1,8 +1,33 @@
 // Domain Types
-export type { ClientRecord, ClientStatus, Regime, ClientListItem, StatusFilter, RegimeFilter } from "./types"
+export type {
+    ClientRecord,
+    ClientStatus,
+    Regime,
+    ClientListItem,
+    StatusFilter,
+    RegimeFilter,
+    ComplianceStatus,
+    RiskLevel,
+    VATHistory,
+    AuditInfo,
+    DocumentRequirements,
+    Compliance,
+    ComplianceFilter,
+    RiskFilter,
+} from "./types"
 
 // Constants
-export { CLIENT_STATUSES, CLIENT_REGIMES, STATUS_CONFIG, STATUS_COLORS, REGIME_LABELS } from "./constants"
+export {
+    CLIENT_STATUSES,
+    CLIENT_REGIMES,
+    STATUS_CONFIG,
+    STATUS_COLORS,
+    REGIME_LABELS,
+    COMPLIANCE_STATUSES,
+    RISK_LEVELS,
+    COMPLIANCE_STATUS_CONFIG,
+    RISK_LEVEL_CONFIG,
+} from "./constants"
 
 // Data & Utilities
 export { clients, getClientById } from "./data"

@@ -219,6 +219,28 @@ importers:
         specifier: 5.9.2
         version: 5.9.2
 
+  packages/domain/payroll:
+    dependencies:
+      lucide-react:
+        specifier: ^0.292.0
+        version: 0.292.0(react@19.2.5)
+    devDependencies:
+      '@cabinetra/eslint-config':
+        specifier: workspace:*
+        version: link:../../config/eslint-config
+      '@cabinetra/typescript-config':
+        specifier: workspace:*
+        version: link:../../config/typescript-config
+      '@types/node':
+        specifier: ^22.15.3
+        version: 22.19.17
+      '@types/react':
+        specifier: 19.2.2
+        version: 19.2.2
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
+
   packages/feature/clients:
     dependencies:
       '@cabinetra/domain-clients':
@@ -469,6 +491,40 @@ importers:
       eslint:
         specifier: ^9.39.1
         version: 9.39.4(jiti@2.6.1)
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
+
+  packages/ui/payroll:
+    dependencies:
+      '@cabinetra/domain-payroll':
+        specifier: workspace:*
+        version: link:../../domain/payroll
+      '@cabinetra/ui-components':
+        specifier: workspace:*
+        version: link:../components
+      lucide-react:
+        specifier: ^0.292.0
+        version: 0.292.0(react@19.2.5)
+      react:
+        specifier: 19.2.x
+        version: 19.2.5
+      react-dom:
+        specifier: 19.2.x
+        version: 19.2.5(react@19.2.5)
+    devDependencies:
+      '@cabinetra/eslint-config':
+        specifier: workspace:*
+        version: link:../../config/eslint-config
+      '@cabinetra/typescript-config':
+        specifier: workspace:*
+        version: link:../../config/typescript-config
+      '@types/node':
+        specifier: ^22.15.3
+        version: 22.19.17
+      '@types/react':
+        specifier: 19.2.2
+        version: 19.2.2
       typescript:
         specifier: 5.9.2
         version: 5.9.2
