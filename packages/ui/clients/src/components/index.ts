@@ -1,0 +1,15 @@
+export { ClientSwitcher } from "./client-switcher"
+export { ClientContextSetter } from "./client-context-setter"
+export { ClientHeader } from "./client-header"
+export { ClientTabs } from "./client-tabs"
+export { ClientKpiStrip as KpiStrip } from "./kpi-strip"
+export { ClientAlertsPanel as AlertsPanel } from "./alerts-panel"
+export { ClientRecentEntries as RecentEntries } from "./recent-entries"
+export { ClientVatCard as VatCard } from "./vat-card"
+
+// Recommended: Use new names directly
+export { ClientKpiStrip } from "./kpi-strip"
+export { ClientAlertsPanel } from "./alerts-panel"
+export { ClientRecentEntries } from "./recent-entries"
+export { ClientVatCard } from "./vat-card"
+export { ClientDeadlines } from "./client-deadlines"

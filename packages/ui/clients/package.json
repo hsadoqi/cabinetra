@@ -1,0 +1,35 @@
+{
+    "name": "@cabinetra/ui-clients",
+    "version": "0.1.0",
+    "private": true,
+    "exports": {
+        ".": "./src/index.ts",
+        "./components/*": "./src/components/*.tsx",
+        "./components": "./src/components/index.ts",
+        "./contexts/*": "./src/contexts/*.tsx",
+        "./contexts": "./src/contexts/index.ts"
+    },
+    "scripts": {
+        "check-types": "tsc --noEmit",
+        "build": "tsc -p tsconfig.json",
+        "dev": "tsc -p tsconfig.json --watch"
+    },
+    "dependencies": {
+        "@cabinetra/domain-clients": "workspace:*",
+        "@cabinetra/ui-components": "workspace:*",
+        "@cabinetra/ui-layouts": "workspace:*",
+        "@cabinetra/platform-i18n": "workspace:*",
+        "lucide-react": "^0.292.0",
+        "next": "^15.0.0",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
+    },
+    "devDependencies": {
+        "@cabinetra/eslint-config": "workspace:*",
+        "@cabinetra/typescript-config": "workspace:*",
+        "@types/node": "^22.15.3",
+        "@types/react": "19.2.2",
+        "@types/react-dom": "19.2.2",
+        "typescript": "5.9.2"
+    }
+}
