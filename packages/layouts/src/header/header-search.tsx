@@ -14,7 +14,7 @@ export function HeaderSearch({
     ...props
 }: HeaderSearchProps) {
     return (
-        <div className="hidden flex-1 md:flex md:justify-center md:max-w-2xl">
+        <div className="hidden flex-1 md:flex md:justify-center md:max-w-xl">
             <button
                 data-slot="header-search"
                 type="button"
