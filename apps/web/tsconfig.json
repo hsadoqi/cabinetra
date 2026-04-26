@@ -40,6 +40,18 @@
       ],
       "@cabinetra/feature-clients/*": [
         "../../packages/feature/clients/src/*"
+      ],
+      "@cabinetra/domain-payroll": [
+        "../../packages/domain/payroll/src/index.ts"
+      ],
+      "@cabinetra/domain-payroll/*": [
+        "../../packages/domain/payroll/src/*"
+      ],
+      "@cabinetra/ui-payroll": [
+        "../../packages/ui/payroll/src/index.ts"
+      ],
+      "@cabinetra/ui-payroll/*": [
+        "../../packages/ui/payroll/src/*"
       ]
     },
     "plugins": [
