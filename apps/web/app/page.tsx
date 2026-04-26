@@ -109,7 +109,7 @@ export default function Home() {
           <QuickAccessCard
             href="/clients"
             title="All Clients"
-            description="Browse all {0} clients".replace("{0}", metrics.totalClients.toString())
+            description={`Browse all ${metrics.totalClients} clients`}
             icon={<FileText className="h-5 w-5" />}
             badge={t("dashboard.viewAll" as never)}
           />
