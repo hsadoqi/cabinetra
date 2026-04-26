@@ -5,6 +5,9 @@
     "private": true,
     "type": "module",
     "main": "./next.config.js",
+    "exports": {
+        ".": "./next.config.js"
+    },
     "files": [
         "next.config.js"
     ]

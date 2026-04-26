@@ -1,4 +1,4 @@
-import baseConfig from "@cabinetra/next-base-config";
+import baseConfig from "@cabinetra/next-config";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
