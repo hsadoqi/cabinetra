@@ -14,7 +14,7 @@ export function HeaderSearch({
     ...props
 }: HeaderSearchProps) {
     return (
-        <div className="hidden md:block md:w-64 lg:w-72">
+        <div className="hidden flex-1 md:flex md:justify-center md:max-w-2xl">
             <button
                 data-slot="header-search"
                 type="button"
@@ -23,7 +23,7 @@ export function HeaderSearch({
                 aria-haspopup="dialog"
                 onClick={onClick}
                 className={cn(
-                    "w-full relative h-9 rounded-md border border-border/60 bg-secondary/30 px-3 text-start text-sm text-muted-foreground transition-colors hover:bg-secondary/50 hover:border-border/80 focus:outline-none focus:ring-2 focus:ring-ring/50 focus:bg-background",
+                    "w-full max-w-md relative h-9 rounded-md border border-border/60 bg-secondary/30 px-3 text-start text-sm text-muted-foreground transition-colors hover:bg-secondary/50 hover:border-border/80 focus:outline-none focus:ring-2 focus:ring-ring/50 focus:bg-background",
                     className
                 )}
                 {...props}

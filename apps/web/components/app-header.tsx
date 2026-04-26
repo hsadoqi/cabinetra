@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useTheme } from "next-themes"
 
 import {
     CommandDialog,
@@ -15,8 +16,6 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuRadioGroup,
-    DropdownMenuRadioItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@cabinetra/ui/primitives/dropdown-menu"
@@ -78,12 +77,11 @@ interface AppHeaderProps {
 export function AppHeader({
     locale = "fr",
     onLocaleChange,
-    theme = "system",
-    onThemeChange,
     user,
     onLogout,
 }: AppHeaderProps) {
     const { open, setOpen, openCommand } = useCommand()
+    const { theme, setTheme } = useTheme()
 
     return (
         <>
@@ -118,16 +116,14 @@ export function AppHeader({
                                     Language
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuRadioGroup
-                                    value={locale}
-                                    onValueChange={(v: string) => onLocaleChange?.(v as Locale)}
-                                >
-                                    {Object.entries(localeLabels).map(([locale, language], idx) => (
-                                        <DropdownMenuRadioItem key={idx} value={String(locale)}>
-                                            {language}
-                                        </DropdownMenuRadioItem>
-                                    ))}
-                                </DropdownMenuRadioGroup>
+                                {Object.entries(localeLabels).map(([localeValue, language], idx) => (
+                                    <DropdownMenuItem
+                                        key={idx}
+                                        onClick={() => onLocaleChange?.(localeValue as Locale)}
+                                    >
+                                        {language}
+                                    </DropdownMenuItem>
+                                ))}
                             </DropdownMenuContent>
                         </DropdownMenu>
 
@@ -148,23 +144,18 @@ export function AppHeader({
                                     Theme
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuRadioGroup
-                                    value={theme}
-                                    onValueChange={(v: string) => onThemeChange?.(v as Theme)}
-                                >
-                                    <DropdownMenuRadioItem value="light">
-                                        <Sun className="mr-2 h-4 w-4" />
-                                        Light
-                                    </DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="dark">
-                                        <Moon className="mr-2 h-4 w-4" />
-                                        Dark
-                                    </DropdownMenuRadioItem>
-                                    <DropdownMenuRadioItem value="system">
-                                        <Monitor className="mr-2 h-4 w-4" />
-                                        System
-                                    </DropdownMenuRadioItem>
-                                </DropdownMenuRadioGroup>
+                                <DropdownMenuItem onClick={() => setTheme("light")}>
+                                    <Sun className="mr-2 h-4 w-4" />
+                                    Light
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                                    <Moon className="mr-2 h-4 w-4" />
+                                    Dark
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => setTheme("system")}>
+                                    <Monitor className="mr-2 h-4 w-4" />
+                                    System
+                                </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
 
