@@ -4,6 +4,7 @@
         "outDir": "dist",
         "rootDir": "src",
         "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
         "paths": {
             "@cabinetra/feature-clients": [
                 "./src/index.ts"

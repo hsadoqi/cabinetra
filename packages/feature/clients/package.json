@@ -19,6 +19,7 @@
         "@cabinetra/ui-clients": "workspace:*",
         "@cabinetra/ui-layouts": "workspace:*",
         "@cabinetra/platform-i18n": "workspace:*",
+        "@cabinetra/ui-components": "workspace:*",
         "lucide-react": "^0.292.0",
         "next": "^15.0.0",
         "react": "^19.2.0",

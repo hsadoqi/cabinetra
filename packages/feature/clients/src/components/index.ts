@@ -1,2 +1,5 @@
 export { ClientDetailsPanel, type ClientDetailsPanelProps } from "./client-details-panel"
 export { ClientListPanel, type ClientListPanelProps } from "./client-list-panel"
+export { ClientActions } from "./client-actions"
+export { ClientBreadcrumb } from "./client-breadcrumb"
+export { ClientsFilters } from "./clients-filters"

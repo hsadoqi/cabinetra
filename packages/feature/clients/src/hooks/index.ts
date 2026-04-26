@@ -54,3 +54,32 @@ export { useClientDetails } from "./use-client-details"
  */
 export { useClientFiltering, type StatusFilter, type RegimeFilter, type SortBy } from "./use-client-filtering"
 
+/**
+ * useClientsSearch - Server-side search and pagination of clients
+ *
+ * Provides functionality for:
+ * - Full-text search with debouncing
+ * - Status and regime filtering
+ * - Sorting by various fields
+ * - Pagination with page navigation
+ *
+ * Types exported:
+ * - ClientsSearchResponse: API response format
+ * - UseClientsSearchParams: Hook parameters
+ * - ClientsPaginationParams: Pagination info
+ *
+ * @example
+ * const { data, isLoading, error, pagination, goToPage } = useClientsSearch({
+ *   query: debouncedQuery,
+ *   status: statusFilter,
+ *   regime: regimeFilter,
+ *   sortBy: "name",
+ *   sortDirection: "asc"
+ * })
+ */
+export {
+    useClientsSearch,
+    type ClientsSearchResponse,
+    type UseClientsSearchParams,
+    type ClientsPaginationParams,
+} from "./use-clients-search"
