@@ -17,14 +17,15 @@ export const localeDefinitions: LocaleDefinition[] = [
     { code: "ar", label: "Arabic", native: "العربية", dir: "rtl" },
 ]
 
-export const localeMap: Record<Locale, LocaleDefinition> = {
-    fr: { code: "fr", label: "French", native: "Français", dir: "ltr" },
-    en: { code: "en", label: "English", native: "English", dir: "ltr" },
-    ar: { code: "ar", label: "Arabic", native: "العربية", dir: "rtl" },
-}
+export const localeMap = localeDefinitions.reduce((acc, localeDefinition) => {
+    acc[localeDefinition.code] = localeDefinition
+    return acc
+}, {} as Record<Locale, LocaleDefinition>)
+
+export const localeCodes = localeDefinitions.map((localeDefinition) => localeDefinition.code)
 
 export function isLocale(value: string | undefined | null): value is Locale {
-    return value === "fr" || value === "en" || value === "ar"
+    return Boolean(value && localeCodes.includes(value as Locale))
 }
 
 export function getLocaleDefinition(locale: Locale) {

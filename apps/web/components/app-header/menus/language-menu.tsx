@@ -33,9 +33,9 @@ export function LanguageMenu({ locale, setLocale, t }: LanguageMenuProps) {
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>{t("common.language")}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                {Object.entries(localeLabels).map(([localeValue, language], idx) => (
+                {Object.entries(localeLabels).map(([localeValue, language]) => (
                     <DropdownMenuItem
-                        key={idx}
+                        key={localeValue}
                         className={localeValue === locale ? "font-medium" : undefined}
                         onClick={() => setLocale(localeValue as Locale)}
                     >
