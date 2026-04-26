@@ -31,9 +31,12 @@ export async function GET(request: NextRequest) {
     try {
         const searchParams = request.nextUrl.searchParams
 
-        // Parse pagination parameters
-        const page = Math.max(1, parseInt(searchParams.get("page") || "1", 10))
-        const pageSize = Math.max(1, Math.min(100, parseInt(searchParams.get("pageSize") || "20", 10)))
+        // Parse pagination parameters with validation
+        const parsedPage = parseInt(searchParams.get("page") || "1", 10)
+        const page = Number.isFinite(parsedPage) ? Math.max(1, parsedPage) : 1
+
+        const parsedPageSize = parseInt(searchParams.get("pageSize") || "20", 10)
+        const pageSize = Number.isFinite(parsedPageSize) ? Math.max(1, Math.min(100, parsedPageSize)) : 20
 
         // Parse filter parameters
         const search = searchParams.get("q")?.toLowerCase().trim() || ""
