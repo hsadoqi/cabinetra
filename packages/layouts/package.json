@@ -1,0 +1,36 @@
+{
+    "name": "@cabinetra/layouts",
+    "version": "0.1.0",
+    "private": true,
+    "exports": {
+        ".": "./src/index.ts",
+        "./header": "./src/header/index.ts"
+    },
+    "scripts": {
+        "lint": "eslint . --max-warnings 0",
+        "check-types": "tsc --noEmit",
+        "build": "tsc -p tsconfig.json"
+    },
+    "dependencies": {
+        "@cabinetra/ui": "workspace:*",
+        "clsx": "^2.1.1",
+        "tailwind-merge": "^3.3.1",
+        "lucide-react": "^1.11.0",
+        "radix-ui": "^1.4.3",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0"
+    },
+    "devDependencies": {
+        "@cabinetra/eslint-config": "workspace:*",
+        "@cabinetra/typescript-config": "workspace:*",
+        "@types/node": "^22.15.3",
+        "@types/react": "19.2.2",
+        "@types/react-dom": "19.2.2",
+        "eslint": "^9.39.1",
+        "typescript": "5.9.2"
+    },
+    "peerDependencies": {
+        "react": "^19.0.0",
+        "tailwindcss": "^4.1.0"
+    }
+}
