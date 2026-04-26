@@ -1,6 +1,7 @@
 "use server"
 
 import { apiArchiveClient, apiDeleteClient } from "@cabinetra/feature-clients"
+import { exportClient } from "@cabinetra/domain-clients"
 
 /**
  * Server actions for client mutations
@@ -61,16 +62,12 @@ export async function archiveClientAction(clientId: string) {
 
 /**
  * Export a client's data (server action)
+ * Calls domain function directly - no HTTP request needed
  */
 export async function exportClientAction(clientId: string) {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ""}/api/clients/${clientId}`)
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch client for export")
-        }
-
-        const result = await response.json()
+        // Call domain function directly for robust server-side export
+        const result = exportClient(clientId)
 
         if (result.success) {
             console.log(`Client ${clientId} exported`)
