@@ -216,15 +216,14 @@ export async function apiDeleteClient(id: string): Promise<ApiResponse<void>> {
 
 /**
  * Archive a client via API
- * In a real app, this would be a separate endpoint
- * For now, we use a PUT with a special flag
+ * Sends a PATCH request to set the archivedAt timestamp
  */
 export async function apiArchiveClient(id: string): Promise<ApiResponse<ClientRecord>> {
     try {
-        const response = await fetch(`/api/clients/${encodeURIComponent(id)}`, {
-            method: "PUT",
+        const response = await fetch(`/api/clients/${encodeURIComponent(id)}/archive`, {
+            method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ archived: true }),
+            body: JSON.stringify({}), // Body can be empty, endpoint will set the timestamp
         })
 
         const data = await response.json()

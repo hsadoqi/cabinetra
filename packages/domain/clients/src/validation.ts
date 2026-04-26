@@ -288,15 +288,29 @@ export function validateUpdateClientInput(input: unknown): {
         }
     }
 
+    // Validate archivedAt field (optional, can be ISO 8601 string or null to unarchive)
+    if (data.archivedAt !== undefined) {
+        if (data.archivedAt !== null && typeof data.archivedAt === "string") {
+            // Validate ISO 8601 timestamp
+            try {
+                new Date(data.archivedAt)
+            } catch {
+                errors.push({ field: "archivedAt", message: "Invalid ISO 8601 timestamp" })
+            }
+        } else if (data.archivedAt !== null) {
+            errors.push({ field: "archivedAt", message: "archivedAt must be an ISO 8601 timestamp string or null" })
+        }
+    }
+
     return {
         valid: errors.length === 0,
         errors,
     }
 }
 
-export type CreateClientInput = Omit<ClientRecord, "id" | "lastUpdatedAt" | "monthlyRevenueDeltaPct" | "pendingDeclarationsDelta" | "unreconciledEntriesDelta" | "employeeCountDelta">
+export type CreateClientInput = Omit<ClientRecord, "id" | "lastUpdatedAt" | "archivedAt" | "monthlyRevenueDeltaPct" | "pendingDeclarationsDelta" | "unreconciledEntriesDelta" | "employeeCountDelta">
 
-export type UpdateClientInput = Partial<CreateClientInput>
+export type UpdateClientInput = Partial<CreateClientInput> & { archivedAt?: string | null }
 
 /**
  * Helper function to validate route parameters

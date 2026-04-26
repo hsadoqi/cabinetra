@@ -22,6 +22,7 @@ export type ClientRecord = {
     employeeCount: number
     employeeCountDelta: number
     lastUpdatedAt: string
+    archivedAt?: string // ISO 8601 timestamp when archived, undefined if active
 }
 
 export interface ClientListItem {

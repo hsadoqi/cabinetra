@@ -68,6 +68,11 @@ export async function GET(request: NextRequest) {
 
         // Apply filters
         const filtered = clients.filter((client) => {
+            // Exclude archived clients by default (unless explicitly requested)
+            if (client.archivedAt && !searchParams.get("includeArchived")) {
+                return false
+            }
+
             // Search filter
             if (search) {
                 const searchableText = [client.name, client.id, client.legalForm, client.ice, client.regime]

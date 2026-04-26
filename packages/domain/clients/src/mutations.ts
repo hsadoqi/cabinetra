@@ -61,6 +61,8 @@ export function createClient(input: CreateClientInput): MutationResult<ClientRec
         employeeCount: input.employeeCount ?? 0,
         employeeCountDelta: 0,
         lastUpdatedAt: new Date().toISOString(),
+        // New clients are not archived
+        archivedAt: undefined,
     }
 
     clients.push(newClient)
@@ -109,6 +111,8 @@ export function updateClient(id: string, input: UpdateClientInput): MutationResu
         employeeCount: input.employeeCount ?? currentClient.employeeCount,
         employeeCountDelta: currentClient.employeeCountDelta,
         lastUpdatedAt: new Date().toISOString(),
+        // Handle archivedAt field: explicit null unarchives, undefined keeps current state, string sets it
+        archivedAt: input.archivedAt !== undefined ? input.archivedAt ?? undefined : currentClient.archivedAt,
     }
 
     clients[clientIndex] = updatedClient
@@ -131,12 +135,21 @@ export function archiveClient(id: string): MutationResult<ClientRecord> {
         }
     }
 
-    // For now, we'll use a special status marker
-    // In production, there would be an "archived" status or deleted_at timestamp
     const currentClient = clients[clientIndex]!
+
+    // If already archived, return error
+    if (currentClient.archivedAt) {
+        return {
+            success: false,
+            error: `Client ${id} is already archived`,
+        }
+    }
+
+    const now = new Date().toISOString()
     const archivedClient: ClientRecord = {
         ...currentClient,
-        lastUpdatedAt: new Date().toISOString(),
+        archivedAt: now,
+        lastUpdatedAt: now,
     }
 
     clients[clientIndex] = archivedClient
