@@ -88,16 +88,18 @@ export function ClientSidebar({
     return (
         <>
             <aside
-                className="hidden md:flex w-[248px] shrink-0 flex-col border-e border-sidebar-border bg-sidebar text-sidebar-foreground overflow-hidden"
+                className="hidden md:flex w-[248px] shrink-0 flex-col border-e border-sidebar-border bg-sidebar text-sidebar-foreground"
                 aria-label={tr("nav.mainAria")}
             >
-                <ClientSidebarPicker
-                    currentClient={currentClient!}
-                    onOpenClientSwitcher={onOpenClientSwitcher ?? (() => { })}
-                    onClearClient={onClearClient ?? (() => { })}
-                    tr={tr}
+                <div className="shrink-0">
+                    <ClientSidebarPicker
+                        currentClient={currentClient!}
+                        onOpenClientSwitcher={onOpenClientSwitcher ?? (() => { })}
+                        onClearClient={onClearClient ?? (() => { })}
+                        tr={tr}
 
-                />
+                    />
+                </div>
                 {/* Primary nav */}
                 <nav className="flex-1 overflow-y-auto py-2">
                     {/* Firm-wide section */}
@@ -152,7 +154,7 @@ export function ClientSidebar({
                 </nav>
 
                 {/* Fiscal year indicator */}
-                <div className="border-t border-sidebar-border p-2">
+                <div className="shrink-0 border-t border-sidebar-border p-2">
                     <div className="rounded-sm border border-sidebar-border bg-background px-2.5 py-1.5">
                         <div className="flex items-center justify-between">
                             <span className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">

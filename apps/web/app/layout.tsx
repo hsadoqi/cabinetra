@@ -100,10 +100,10 @@ export default async function RootLayout({
           {themeScript}
         </Script>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col h-screen`}>
         <Providers initialTheme={initialTheme} initialLocale={initialLocale}>
           <AppHeader />
-          <main className="mx-auto w-full max-w-7xl px-4 pt-4 sm:px-6 lg:px-8 overflow-hidden">{children}</main>
+          <main className="flex-1 min-h-0 overflow-hidden mx-auto w-full max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">{children}</main>
           <ClientSwitcherRoot />
         </Providers>
       </body>
