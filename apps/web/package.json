@@ -27,6 +27,7 @@
   "devDependencies": {
     "@cabinetra/eslint-config": "workspace:*",
     "@cabinetra/typescript-config": "workspace:*",
+    "@cabinetra/next-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.12",
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",

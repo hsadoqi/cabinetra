@@ -1,0 +1,11 @@
+{
+    "name": "@cabinetra/next-config",
+    "version": "0.1.0",
+    "description": "Shared Next.js configuration base for all Cabinetra applications",
+    "private": true,
+    "type": "module",
+    "main": "./next.config.js",
+    "files": [
+        "next.config.js"
+    ]
+}
