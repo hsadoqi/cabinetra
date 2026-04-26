@@ -9,6 +9,10 @@ import {
     ClientRecentEntries,
     ClientTabs,
     ClientVatCard,
+    ComplianceSummaryPanel,
+    VatFilingPanel,
+    AuditInfoPanel,
+    DocumentsPanel,
 } from "@cabinetra/ui-clients"
 
 import type { ClientRecord } from "@cabinetra/domain-clients"
@@ -70,6 +74,19 @@ export function ClientDetailsPanel({
                             <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                                 <ClientVatCard client={client} />
                                 <ClientAlertsPanel />
+                            </div>
+                        )}
+
+                        {activeTab === "compliance" && (
+                            <div className="space-y-6">
+                                <ComplianceSummaryPanel client={client} />
+                                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+                                    <div className="lg:col-span-2">
+                                        <VatFilingPanel client={client} />
+                                    </div>
+                                    <DocumentsPanel client={client} />
+                                </div>
+                                <AuditInfoPanel client={client} />
                             </div>
                         )}
 

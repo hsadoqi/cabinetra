@@ -22,6 +22,30 @@ const SEED_CLIENTS: ClientRecord[] = [
         employeeCount: 14,
         employeeCountDelta: 1,
         lastUpdatedAt: "2026-04-24",
+        compliance: {
+            overallStatus: "compliant",
+            lastComplianceCheckAt: "2026-04-20",
+            vatHistory: {
+                filingDeadline: "2026-05-30",
+                lastFiledAt: "2026-03-15",
+                status: "filed",
+                nextDueAt: "2026-05-30",
+            },
+            auditInfo: {
+                status: "completed",
+                lastAuditDate: "2025-11-10",
+                nextScheduledDate: "2026-11-10",
+                findings: { count: 3, resolved: 3, pending: 0 },
+            },
+            documentRequirements: {
+                totalRequired: 12,
+                submitted: 12,
+                pending: 0,
+                expiringSoon: 1,
+            },
+            riskLevel: "low",
+            flaggedItems: { count: 0, urgentCount: 0 },
+        },
     },
     {
         id: "CL-0002",
@@ -39,6 +63,30 @@ const SEED_CLIENTS: ClientRecord[] = [
         employeeCount: 6,
         employeeCountDelta: 0,
         lastUpdatedAt: "2026-04-22",
+        compliance: {
+            overallStatus: "under_review",
+            lastComplianceCheckAt: "2026-04-18",
+            vatHistory: {
+                filingDeadline: "2026-05-15",
+                lastFiledAt: "2026-02-20",
+                status: "pending",
+                nextDueAt: "2026-05-15",
+            },
+            auditInfo: {
+                status: "in_progress",
+                lastAuditDate: "2025-08-05",
+                nextScheduledDate: undefined,
+                findings: { count: 5, resolved: 2, pending: 3 },
+            },
+            documentRequirements: {
+                totalRequired: 10,
+                submitted: 8,
+                pending: 2,
+                expiringSoon: 2,
+            },
+            riskLevel: "medium",
+            flaggedItems: { count: 3, urgentCount: 1 },
+        },
     },
     {
         id: "CL-0003",
@@ -56,6 +104,30 @@ const SEED_CLIENTS: ClientRecord[] = [
         employeeCount: 41,
         employeeCountDelta: 2,
         lastUpdatedAt: "2026-04-20",
+        compliance: {
+            overallStatus: "non_compliant",
+            lastComplianceCheckAt: "2026-04-15",
+            vatHistory: {
+                filingDeadline: "2026-04-30",
+                lastFiledAt: "2025-12-28",
+                status: "pending",
+                nextDueAt: "2026-04-30",
+            },
+            auditInfo: {
+                status: "scheduled",
+                lastAuditDate: "2024-06-20",
+                nextScheduledDate: "2026-05-15",
+                findings: { count: 12, resolved: 8, pending: 4 },
+            },
+            documentRequirements: {
+                totalRequired: 15,
+                submitted: 11,
+                pending: 4,
+                expiringSoon: 3,
+            },
+            riskLevel: "high",
+            flaggedItems: { count: 7, urgentCount: 4 },
+        },
     },
     {
         id: "CL-0004",
@@ -73,6 +145,30 @@ const SEED_CLIENTS: ClientRecord[] = [
         employeeCount: 9,
         employeeCountDelta: -1,
         lastUpdatedAt: "2026-04-16",
+        compliance: {
+            overallStatus: "non_compliant",
+            lastComplianceCheckAt: "2026-04-10",
+            vatHistory: {
+                filingDeadline: "2026-04-15",
+                lastFiledAt: "2025-11-15",
+                status: "pending",
+                nextDueAt: "2026-04-15",
+            },
+            auditInfo: {
+                status: "none",
+                lastAuditDate: undefined,
+                nextScheduledDate: undefined,
+                findings: undefined,
+            },
+            documentRequirements: {
+                totalRequired: 12,
+                submitted: 6,
+                pending: 6,
+                expiringSoon: 5,
+            },
+            riskLevel: "high",
+            flaggedItems: { count: 11, urgentCount: 8 },
+        },
     },
 ]
 

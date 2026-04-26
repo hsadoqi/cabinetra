@@ -1,6 +1,6 @@
-import { AlertCircle, AlertTriangle, CheckCircle2, FileWarning } from "lucide-react"
+import { AlertCircle, AlertTriangle, CheckCircle2, FileWarning, Shield, ShieldAlert } from "lucide-react"
 
-import type { ClientStatus, Regime } from "./types"
+import type { ClientStatus, ComplianceStatus, Regime, RiskLevel } from "./types"
 
 /**
  * Centralized list of all valid client statuses
@@ -65,3 +65,87 @@ export const REGIME_LABELS = {
     normal: "Régime Normal",
     simplified: "Régime Simplifié",
 } as const
+
+/**
+ * Centralized list of all valid compliance statuses
+ */
+export const COMPLIANCE_STATUSES: ReadonlyArray<ComplianceStatus> = [
+    "compliant",
+    "non_compliant",
+    "under_review",
+    "scheduled",
+]
+
+/**
+ * Centralized list of all valid risk levels
+ */
+export const RISK_LEVELS: ReadonlyArray<RiskLevel> = ["low", "medium", "high"]
+
+export const COMPLIANCE_STATUS_CONFIG: Record<
+    ComplianceStatus,
+    {
+        key: string
+        color: string
+        bgColor: string
+        icon: typeof CheckCircle2
+        label: string
+    }
+> = {
+    compliant: {
+        key: "compliance.status.compliant",
+        label: "Compliant",
+        color: "text-emerald-600 dark:text-emerald-400",
+        bgColor: "bg-emerald-50/50 dark:bg-emerald-950/20",
+        icon: CheckCircle2,
+    },
+    non_compliant: {
+        key: "compliance.status.non_compliant",
+        label: "Non-Compliant",
+        color: "text-red-600 dark:text-red-400",
+        bgColor: "bg-red-50/50 dark:bg-red-950/20",
+        icon: AlertCircle,
+    },
+    under_review: {
+        key: "compliance.status.under_review",
+        label: "Under Review",
+        color: "text-amber-600 dark:text-amber-400",
+        bgColor: "bg-amber-50/50 dark:bg-amber-950/20",
+        icon: AlertTriangle,
+    },
+    scheduled: {
+        key: "compliance.status.scheduled",
+        label: "Scheduled",
+        color: "text-blue-600 dark:text-blue-400",
+        bgColor: "bg-blue-50/50 dark:bg-blue-950/20",
+        icon: FileWarning,
+    },
+}
+
+export const RISK_LEVEL_CONFIG: Record<
+    RiskLevel,
+    {
+        color: string
+        bgColor: string
+        icon: typeof ShieldAlert
+        label: string
+    }
+> = {
+    low: {
+        label: "Low Risk",
+        color: "text-emerald-600 dark:text-emerald-400",
+        bgColor: "bg-emerald-50/50 dark:bg-emerald-950/20",
+        icon: Shield,
+    },
+    medium: {
+        label: "Medium Risk",
+        color: "text-amber-600 dark:text-amber-400",
+        bgColor: "bg-amber-50/50 dark:bg-amber-950/20",
+        icon: AlertTriangle,
+    },
+    high: {
+        label: "High Risk",
+        color: "text-red-600 dark:text-red-400",
+        bgColor: "bg-red-50/50 dark:bg-red-950/20",
+        icon: ShieldAlert,
+    },
+}

@@ -25,3 +25,9 @@ export { ClientContent } from "./components/layouts/content"
 
 // Skeleton components
 export { ClientDetailsSkeleton, ClientsGridSkeleton } from "./components/skeletons"
+
+// Compliance components
+export { ComplianceSummaryPanel } from "./components/compliance/compliance-summary-panel"
+export { VatFilingPanel } from "./components/compliance/vat-filing-panel"
+export { AuditInfoPanel } from "./components/compliance/audit-info-panel"
+export { DocumentsPanel } from "./components/compliance/documents-panel"
