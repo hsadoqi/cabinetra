@@ -4,12 +4,14 @@ import { cn } from "@cabinetra/ui-components/lib/utils"
 interface HeaderSearchProps extends React.ComponentProps<"button"> {
     placeholder?: string
     shortcut?: string
+    expanded?: boolean
 }
 
 export function HeaderSearch({
     className,
     placeholder = "Search…",
     shortcut = "⌘K",
+    expanded = false,
     onClick,
     ...props
 }: HeaderSearchProps) {
@@ -20,7 +22,7 @@ export function HeaderSearch({
                 data-slot="header-search"
                 type="button"
                 role="combobox"
-                aria-expanded="false"
+                    aria-expanded={expanded}
                 aria-haspopup="dialog"
                 onClick={onClick}
                 className={cn(
