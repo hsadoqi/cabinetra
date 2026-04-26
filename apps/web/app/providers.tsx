@@ -1,10 +1,18 @@
 "use client"
 
-import { CommandProvider, ThemeProvider } from "@cabinetra/ui/providers"
+import { ThemeProvider, type Theme } from "@cabinetra/ui-components/providers"
 
-export const Providers = ({ children }: { children: React.ReactNode }) => {
+import { CommandProvider } from "@cabinetra/ui-components/providers"
+
+export const Providers = ({
+    children,
+    initialTheme
+}: {
+    children: React.ReactNode
+    initialTheme: Theme
+}) => {
     return (
-        <ThemeProvider>
+        <ThemeProvider initialTheme={initialTheme}>
             <CommandProvider>{children}</CommandProvider>
         </ThemeProvider>
     )

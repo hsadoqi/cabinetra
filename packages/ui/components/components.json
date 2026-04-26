@@ -11,10 +11,10 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@cabinetra/ui/primitives",
-    "hooks": "@cabinetra/ui/hooks",
-    "lib": "@cabinetra/ui/lib",
-    "ui": "@cabinetra/ui/primitives",
-    "utils": "@cabinetra/ui/lib/utils"
+    "components": "@cabinetra/ui-components/primitives",
+    "hooks": "@cabinetra/ui-components/hooks",
+    "lib": "@cabinetra/ui-components/lib",
+    "ui": "@cabinetra/ui-components/primitives",
+    "utils": "@cabinetra/ui-components/lib/utils"
   }
 }

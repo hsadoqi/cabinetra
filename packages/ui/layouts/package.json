@@ -1,5 +1,5 @@
 {
-    "name": "@cabinetra/layouts",
+    "name": "@cabinetra/ui-layouts",
     "version": "0.1.0",
     "private": true,
     "exports": {
@@ -12,7 +12,7 @@
         "build": "tsc -p tsconfig.json"
     },
     "dependencies": {
-        "@cabinetra/ui": "workspace:*",
+        "@cabinetra/ui-components": "workspace:*",
         "clsx": "^2.1.1",
         "tailwind-merge": "^3.3.1",
         "lucide-react": "^1.11.0",

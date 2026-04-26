@@ -5,17 +5,17 @@
       "@/*": [
         "./*"
       ],
-      "@cabinetra/ui": [
-        "../../packages/ui/src/index.ts"
+      "@cabinetra/ui-components": [
+        "../../packages/ui/components/src/index.ts"
       ],
-      "@cabinetra/ui/*": [
-        "../../packages/ui/src/*"
+      "@cabinetra/ui-components/*": [
+        "../../packages/ui/components/src/*"
       ],
-      "@cabinetra/layouts": [
-        "../../packages/layouts/src/index.ts"
+      "@cabinetra/ui-layouts": [
+        "../../packages/ui/layouts/src/index.ts"
       ],
-      "@cabinetra/layouts/*": [
-        "../../packages/layouts/src/*"
+      "@cabinetra/ui-layouts/*": [
+        "../../packages/ui/layouts/src/*"
       ]
     },
     "plugins": [

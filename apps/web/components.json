@@ -15,6 +15,6 @@
     "hooks": "@/hooks",
     "lib": "@/lib",
     "ui": "../../packages/ui/src/primitives",
-    "utils": "@cabinetra/ui/lib/utils"
+    "utils": "@cabinetra/ui-components/lib/utils"
   }
 }

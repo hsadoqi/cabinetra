@@ -1,5 +1,5 @@
 import { Slot } from "radix-ui"
-import { cn } from "@cabinetra/ui/lib/utils"
+import { cn } from "@cabinetra/ui-components/lib/utils"
 
 export function HeaderLogo({
     className,
@@ -11,11 +11,9 @@ export function HeaderLogo({
     return (
         <Comp
             data-slot="header-logo"
-            className={cn("flex shrink-0 items-center", className)}
+            className={cn("flex shrink-0 items-center pr-2", className)}
             {...props}
         >
-            {/* <Logo size="sm" /> */}
-
             {children}
         </Comp>
     )
