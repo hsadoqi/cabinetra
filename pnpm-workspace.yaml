@@ -1,6 +1,7 @@
 packages:
   - "apps/web"
   - "apps/docs"
+  - "packages/assets/*"
   - "packages/config/*"
   - "packages/domain/*"
   - "packages/feature/*"
