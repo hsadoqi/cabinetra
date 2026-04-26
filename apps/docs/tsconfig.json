@@ -2,7 +2,15 @@
   "extends": "@cabinetra/typescript-config/nextjs.json",
   "compilerOptions": {
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ],
+      "@cabinetra/ui-components": [
+        "../../packages/ui/components/src/index.ts"
+      ],
+      "@cabinetra/ui-components/*": [
+        "../../packages/ui/components/src/*"
+      ]
     },
     "plugins": [
       {
