@@ -11,6 +11,12 @@
       "@cabinetra/ui-components/*": [
         "../../packages/ui/components/src/*"
       ],
+      "@cabinetra/platform-i18n": [
+        "../../packages/platform/i18n/src/index.ts"
+      ],
+      "@cabinetra/platform-i18n/*": [
+        "../../packages/platform/i18n/src/*"
+      ],
       "@cabinetra/ui-layouts": [
         "../../packages/ui/layouts/src/index.ts"
       ],
