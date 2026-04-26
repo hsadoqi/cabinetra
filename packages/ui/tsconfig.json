@@ -2,11 +2,16 @@
   "extends": "@cabinetra/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "paths": {
-      "@cabinetra/ui": ["./src/index.ts"],
-      "@cabinetra/ui/*": ["./src/*"]
-    },
     "rootDir": "src",
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@cabinetra/ui": [
+        "./src/index.ts"
+      ],
+      "@cabinetra/ui/*": [
+        "./src/*"
+      ]
+    },
     "strictNullChecks": true
   },
   "include": ["src"],

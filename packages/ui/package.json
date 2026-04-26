@@ -4,13 +4,16 @@
   "private": true,
   "exports": {
     ".": "./src/index.ts",
+    "./lib/*": "./src/lib/*",
+    "./lib/utils": "./src/lib/utils.ts",
+    "./styles.css": "./src/styles/globals.css",
     "./components/*": "./src/components/*.tsx",
     "./components": "./src/components/index.ts",
     "./hooks/*": "./src/hooks/*",
-    "./lib/*": "./src/lib/*",
     "./primitives/*": "./src/primitives/*.tsx",
     "./primitives": "./src/primitives/index.ts",
-    "./styles.css": "./src/styles/globals.css"
+    "./brand/*": "./src/brand/*.tsx",
+    "./brand": "./src/brand/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -33,7 +36,9 @@
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
     "label": "^0.2.2",
+    "lucide-react": "^1.11.0",
     "radix-ui": "^1.4.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
