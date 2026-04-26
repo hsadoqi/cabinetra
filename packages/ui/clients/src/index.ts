@@ -17,3 +17,11 @@ export { ClientAlertsPanel } from "./components/alerts-panel"
 export { ClientRecentEntries } from "./components/recent-entries"
 export { ClientVatCard } from "./components/vat-card"
 export { ClientDeadlines } from "./components/client-deadlines"
+
+// Layout components
+export { ClientSidebarShell, ClientSidebarContainer, ClientSidebar, ClientSidebarPicker, EmptyClientSidebarPicker, type SidebarClient } from "./components/layouts/sidebar"
+export { ClientLayoutHeader } from "./components/layouts/header"
+export { ClientContent } from "./components/layouts/content"
+
+// Skeleton components
+export { ClientDetailsSkeleton, ClientsGridSkeleton } from "./components/skeletons"
