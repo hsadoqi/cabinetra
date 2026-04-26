@@ -21,52 +21,6 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
 
-  apps/docs:
-    dependencies:
-      '@cabinetra/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-      next:
-        specifier: 16.2.0
-        version: 16.2.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      react:
-        specifier: ^19.2.0
-        version: 19.2.0
-      react-dom:
-        specifier: ^19.2.0
-        version: 19.2.0(react@19.2.0)
-    devDependencies:
-      '@cabinetra/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/config/eslint-config
-      '@cabinetra/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/config/typescript-config
-      '@tailwindcss/postcss':
-        specifier: ^4.1.12
-        version: 4.2.4
-      '@types/node':
-        specifier: ^22.15.3
-        version: 22.15.3
-      '@types/react':
-        specifier: 19.2.2
-        version: 19.2.2
-      '@types/react-dom':
-        specifier: 19.2.2
-        version: 19.2.2(@types/react@19.2.2)
-      eslint:
-        specifier: ^9.39.1
-        version: 9.39.1(jiti@2.6.1)
-      postcss:
-        specifier: ^8.5.6
-        version: 8.5.10
-      tailwindcss:
-        specifier: ^4.1.12
-        version: 4.2.4
-      typescript:
-        specifier: 5.9.2
-        version: 5.9.2
-
   apps/web:
     dependencies:
       '@cabinetra/layouts':
@@ -260,6 +214,9 @@ importers:
       eslint:
         specifier: ^9.39.1
         version: 9.39.1(jiti@2.6.1)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       typescript:
         specifier: 5.9.2
         version: 5.9.2
@@ -2185,6 +2142,12 @@ packages:
 
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+
+  next-themes@0.4.6:
+    resolution: {integrity: sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
 
   next@16.2.0:
     resolution: {integrity: sha512-NLBVrJy1pbV1Yn00L5sU4vFyAHt5XuSjzrNyFnxo6Com0M0KrL6hHM5B99dbqXb2bE9pm4Ow3Zl1xp6HVY9edQ==}
@@ -4648,6 +4611,11 @@ snapshots:
   nanoid@3.3.11: {}
 
   natural-compare@1.4.0: {}
+
+  next-themes@0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+    dependencies:
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   next@16.2.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
