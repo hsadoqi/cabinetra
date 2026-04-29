@@ -3,6 +3,9 @@
     "version": "0.1.0",
     "description": "Shared public assets (SVGs, images, etc.) for all Cabinetra applications",
     "private": true,
+    "scripts": {
+        "clean": "rm -rf .turbo .dist node_modules dist && pnpm install"
+    },
     "files": [
         "public"
     ]

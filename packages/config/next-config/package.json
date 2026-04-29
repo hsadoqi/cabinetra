@@ -8,6 +8,9 @@
     "exports": {
         ".": "./next.config.js"
     },
+    "scripts": {
+        "clean": "rm -rf .turbo .dist node_modules dist && pnpm install"
+    },
     "files": [
         "next.config.js"
     ]

@@ -9,7 +9,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "typecheck": "turbo run check-types",
-    "shadcn:add": "pnpm -F @cabinetra/ui-components shadcn:add"
+    "shadcn:add": "pnpm -F @cabinetra/ui-components shadcn:add",
+    "clean": "rm -rf .turbo node_modules .pnpm-store && find . -type d \\( -name .next -o -name .dist -o -name dist -o -name node_modules \\) -prune -exec rm -rf {} + && pnpm install"
   },
   "devDependencies": {
     "eslint": "^9.39.1",

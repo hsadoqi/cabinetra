@@ -12,12 +12,12 @@ import {
 import type { Metadata } from "next";
 import { Providers } from "./providers";
 import Script from "next/script";
-import type { Theme } from "@cabinetra/ui-components/providers";
-import { getThemeBootstrapScript } from "@cabinetra/ui-components/lib/theme-bootstrap";
+import type { Theme } from "@cabinetra/ui-components/theme";
+import { getThemeBootstrapScript } from "@cabinetra/ui-components/theme/lib/theme-bootstrap";
 import { cookies } from "next/headers";
 import localFont from "next/font/local";
 import { Inter, Noto_Sans_Arabic, JetBrains_Mono } from "next/font/google";
-import { cn } from "@cabinetra/ui-components/lib/utils";
+import { cn } from "@cabinetra/ui-components/theme/lib/utils";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
