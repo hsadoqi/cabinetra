@@ -3,7 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
-import { getThemeBootstrapScript } from "@cabinetra/ui-components/lib/theme-bootstrap";
+import { getThemeBootstrapScript } from "@cabinetra/ui-components/theme/lib/theme-bootstrap";
 import localFont from "next/font/local";
 
 const geistSans = localFont({
