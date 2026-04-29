@@ -1,7 +1,7 @@
 import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@cabinetra/ui-components"
 import { Monitor, Moon, Sun } from "lucide-react"
 
-import { Theme } from "@cabinetra/ui-components/providers"
+import type { Theme } from "@cabinetra/ui-components/theme"
 import { Translator } from "@/components/app-header/app-header"
 
 interface ThemeMenuProps {

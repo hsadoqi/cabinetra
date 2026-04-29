@@ -9,7 +9,8 @@ import {
     HeaderSearch,
 } from "@cabinetra/ui-layouts/header"
 import { useI18n } from "@cabinetra/platform-i18n"
-import { useCommand, useTheme } from "@cabinetra/ui-components/providers"
+import { useCommand } from "@cabinetra/ui-components/providers"
+import { useTheme } from "@cabinetra/ui-components/theme"
 import { registerHeaderCommandPlugin } from "@/lib/commands/registry"
 
 import { AppBrandLogo } from "./app-brand-logo"

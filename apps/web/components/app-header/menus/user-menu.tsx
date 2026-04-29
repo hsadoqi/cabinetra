@@ -1,5 +1,7 @@
-import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@cabinetra/ui-components"
-import { LogOut, Settings, User, UserCircle } from "lucide-react"
+"use client"
+
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@cabinetra/ui-components"
+import { LogOut, Settings, User } from "lucide-react"
 
 import { Translator } from "@/components/app-header/app-header"
 
@@ -7,6 +9,7 @@ export type User = {
     name: string
     email: string
     initials: string
+    role?: string
 }
 
 interface UserMenuProps {
@@ -15,26 +18,27 @@ interface UserMenuProps {
     t: Translator
 }
 
-export function UserMenu({ user, onLogout, t }: UserMenuProps) {
+export function UserMenu({ user = {
+    name: "John Doe",
+    email: "john.doe@mail.com",
+    initials: "JD",
+    role: "Admin"
+}, onLogout, t }: UserMenuProps) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button
-                    variant="ghost"
-                    className="gap-2 h-10"
+                <button
+                    className="flex items-center gap-2 p-2 ms-1 border-s border-border cursor-pointer hover:bg-muted transition-colors rounded-md py-1"
                     aria-label={t("common.account")}
                 >
-                    {user ? (
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">
-                            {user.initials}
-                        </span>
-                    ) : (
-                        <UserCircle className="h-4 w-4" />
-                    )}
-                    <span className="hidden text-sm font-medium text-foreground lg:inline-flex">
-                        {user?.name ?? t("common.account")}
-                    </span>
-                </Button>
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-foreground text-[11px] font-medium">
+                        {user?.initials}
+                    </div>
+                    <div className="hidden md:flex flex-col items-start justify-center leading-tight">
+                        <span className="text-[12px] font-medium">{user?.name}</span>
+                        <span className="text-[11px] text-muted-foreground">{user?.role}</span>
+                    </div>
+                </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 {user && (
