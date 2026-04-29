@@ -1,5 +1,5 @@
 import Image, { type ImageProps } from "next/image";
-import { Button } from "@cabinetra/ui-components/primitives";
+import { Button } from "@cabinetra/ui-components/atoms";
 import styles from "./page.module.css";
 
 type Props = Omit<ImageProps, "src"> & {

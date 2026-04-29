@@ -1,9 +1,6 @@
 // Theme infrastructure
 export * from "./theme";
 
-// Shadcn/ui primitives
-export * from "./core/primitives";
-
 // Custom component hierarchy
 export * from "./core/atoms";
 export * from "./core/molecules";

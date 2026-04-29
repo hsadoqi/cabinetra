@@ -5,7 +5,7 @@ import { I18nProvider, type Locale } from "@cabinetra/platform-i18n"
 import { SidebarProvider } from "@cabinetra/ui-components"
 import { ThemeProvider, type Theme } from "@cabinetra/ui-components/theme"
 import { CommandProvider, ToastProvider } from "@cabinetra/ui-components/providers"
-import { TooltipProvider } from "@cabinetra/ui-components/primitives"
+import { TooltipProvider } from "@cabinetra/ui-components"
 
 export const Providers = ({
     children,
