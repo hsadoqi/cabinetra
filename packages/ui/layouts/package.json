@@ -9,10 +9,10 @@
     "scripts": {
         "lint": "eslint . --max-warnings 0",
         "check-types": "tsc --noEmit",
-        "build": "tsc -p tsconfig.json"
+        "build": "tsc -p tsconfig.json",
+        "clean": "rm -rf .turbo .dist node_modules dist && pnpm install"
     },
     "dependencies": {
-        "@cabinetra/domain-clients": "workspace:*",
         "@cabinetra/ui-components": "workspace:*",
         "@cabinetra/platform-i18n": "workspace:*",
         "clsx": "^2.1.1",

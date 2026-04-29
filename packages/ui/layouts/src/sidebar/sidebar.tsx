@@ -2,7 +2,7 @@
 
 import { SidebarNav, type SidebarNavSectionConfig } from "./sidebar-nav"
 import type { ReactNode } from "react"
-import { cn } from "@cabinetra/ui-components/lib/utils"
+import { cn } from "@cabinetra/ui-components/theme/lib/utils"
 import type { NavItemConfig } from "./nav-item"
 
 export type SidebarProps = {

@@ -1,6 +1,6 @@
 import { NavItem, type NavItemConfig } from "./nav-item"
 import { usePathname } from "next/navigation"
-import { cn } from "@cabinetra/ui-components/lib/utils"
+import { cn } from "@cabinetra/ui-components/theme/lib/utils"
 import type { ReactNode } from "react"
 
 export type SidebarNavSectionConfig = {

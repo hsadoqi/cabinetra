@@ -1,5 +1,5 @@
 import { Slot } from "radix-ui"
-import { cn } from "@cabinetra/ui-components/lib/utils"
+import { cn } from "@cabinetra/ui-components/theme/lib/utils"
 
 export function HeaderLogo({
     className,

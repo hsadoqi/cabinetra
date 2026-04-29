@@ -1,5 +1,5 @@
 import { Search } from "lucide-react"
-import { cn } from "@cabinetra/ui-components/lib/utils"
+import { cn } from "@cabinetra/ui-components/theme/lib/utils"
 
 interface HeaderSearchProps extends React.ComponentProps<"button"> {
     placeholder?: string

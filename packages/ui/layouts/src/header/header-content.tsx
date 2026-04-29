@@ -1,4 +1,4 @@
-import { cn } from "@cabinetra/ui-components/lib/utils";
+import { cn } from "@cabinetra/ui-components/theme/lib/utils";
 
 export function HeaderContent({
     className,
