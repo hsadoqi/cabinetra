@@ -147,7 +147,139 @@ pnpm exec turbo link
 pnpm exec turbo link
 ```
 
+## Backend Setup
+
+The monorepo includes a NestJS backend API and supporting infrastructure packages:
+
+- `api`: A [NestJS](https://nestjs.com/) API backend running on port 5000
+- `@cabinetra/infrastructure-types`: Shared TypeScript types for API communication
+- `@cabinetra/infrastructure-api-client`: HTTP client for frontend-backend communication
+
+### Prerequisites
+
+- **Node.js** >= 18
+- **Docker** and **Docker Compose** (for PostgreSQL database)
+
+### Running the Backend
+
+#### 1. Start the Database
+
+```sh
+docker-compose up -d
+```
+
+This starts a PostgreSQL container on port 5432. To verify the connection works:
+
+```sh
+pnpm dev --filter=api
+```
+
+#### 2. Run Both Frontend and Backend
+
+Start both the Next.js web app (port 8080) and NestJS API (port 5000) concurrently:
+
+```sh
+pnpm dev
+```
+
+Or run them individually:
+
+```sh
+# Frontend (web app)
+pnpm dev --filter=web
+
+# Backend (API)
+pnpm dev --filter=api
+```
+
+#### 3. Access the Applications
+
+- **Web App**: http://localhost:8080
+- **API Health Check**: http://localhost:5000/health
+- **Database**: postgresql://localhost:5432/cabinetra (credentials in `.env` files)
+
+### Environment Configuration
+
+#### Backend Environment Variables
+
+Create `apps/api/.env.local` (copy from `.env.example`):
+
+```env
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/cabinetra
+NODE_ENV=development
+PORT=5000
+```
+
+#### Frontend Environment Variables
+
+Create `apps/web/.env.local` (copy from `.env.example`):
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
+
+### API Client Usage
+
+Import the API client and types in your frontend components:
+
+```typescript
+import { apiClient, type HealthResponse } from '@cabinetra/infrastructure-api-client'
+import type { HealthResponse } from '@cabinetra/infrastructure-types'
+
+// Make a typed API request
+const health = await apiClient.get<HealthResponse>('/health')
+console.log(health.status) // 'ok'
+```
+
+Or use the provided health check hook:
+
+```typescript
+import { useHealthCheck } from '@/lib/hooks/use-health-check'
+
+export function MyComponent() {
+  const { health, isLoading, error } = useHealthCheck()
+  
+  if (isLoading) return <p>Checking API...</p>
+  if (error) return <p>API Error: {error.message}</p>
+  
+  return <p>API Status: {health?.status}</p>
+}
+```
+
+### Building the Project
+
+Build all apps and packages:
+
+```sh
+pnpm build
+```
+
+Build only the backend:
+
+```sh
+turbo build --filter=api
+```
+
+Build only the frontend:
+
+```sh
+turbo build --filter=web
+```
+
+### Type Safety
+
+The infrastructure packages maintain type safety across the monorepo:
+
+- **`@cabinetra/infrastructure-types`**: Define API request/response shapes
+- **`@cabinetra/infrastructure-api-client`**: Typed fetch wrapper that uses the types
+
+When adding new API endpoints:
+1. Add types to `packages/infrastructure/types/src/index.ts`
+2. Import types in the backend and frontend
+3. Use `apiClient` with the typed endpoints
+
 ## Useful Links
+
 
 Learn more about the power of Turborepo:
 

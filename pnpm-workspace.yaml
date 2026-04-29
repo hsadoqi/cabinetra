@@ -1,9 +1,11 @@
 packages:
   - "apps/web"
   - "apps/docs"
+  - "apps/api"
   - "packages/assets/*"
   - "packages/config/*"
   - "packages/domain/*"
   - "packages/feature/*"
+  - "packages/infrastructure/*"
   - "packages/platform/*"
   - "packages/ui/*"

@@ -26,6 +26,10 @@ coverage
 out/
 build
 dist
+apps/api/dist/
+
+# Database
+postgres_data/
 
 
 # Debug
