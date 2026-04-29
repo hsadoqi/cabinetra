@@ -43,11 +43,6 @@ export default function NotFound() {
                             </Link>
                         </div>
                         <div>
-                            <Link href="/clients" className="text-primary hover:text-primary/80 font-medium">
-                                → Browse Clients
-                            </Link>
-                        </div>
-                        <div>
                             <a
                                 href="mailto:support@cabinetra.com"
                                 className="text-primary hover:text-primary/80 font-medium"
@@ -66,12 +61,6 @@ export default function NotFound() {
                     >
                         <Home className="w-4 h-4" />
                         Back to Home
-                    </Link>
-                    <Link
-                        href="/clients"
-                        className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors font-medium"
-                    >
-                        Browse Clients
                     </Link>
                 </div>
             </div>

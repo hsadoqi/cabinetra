@@ -12,10 +12,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@cabinetra/domain-clients": "workspace:*",
-    "@cabinetra/feature-clients": "workspace:*",
     "@cabinetra/platform-i18n": "workspace:*",
-    "@cabinetra/ui-clients": "workspace:*",
     "@cabinetra/ui-components": "workspace:*",
     "@cabinetra/ui-layouts": "workspace:*",
     "lucide-react": "^1.11.0",

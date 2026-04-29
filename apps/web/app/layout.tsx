@@ -1,7 +1,6 @@
 import "./globals.css";
 
 import { AppHeader } from "@/components/app-header/app-header";
-import { ClientSwitcherRoot } from "@/components/client-switcher-root";
 import {
   DEFAULT_LOCALE,
   getLocaleDirection,
@@ -104,7 +103,6 @@ export default async function RootLayout({
         <Providers initialTheme={initialTheme} initialLocale={initialLocale}>
           <AppHeader />
           <main className="mx-auto w-full max-w-7xl px-4 pt-4 sm:px-6 lg:px-8 overflow-hidden">{children}</main>
-          <ClientSwitcherRoot />
         </Providers>
       </body>
     </html>

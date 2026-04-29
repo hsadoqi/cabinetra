@@ -13,7 +13,7 @@ export default defineConfig({
         globals: true,
         server: {
             deps: {
-                inline: ['@cabinetra/ui-clients', '@cabinetra/domain-clients', '@cabinetra/ui-components', '@cabinetra/ui-layouts', '@cabinetra/platform-i18n', '@cabinetra/feature-clients'],
+                inline: ['@cabinetra/ui-components', '@cabinetra/ui-layouts', '@cabinetra/platform-i18n'],
             },
         },
     },
