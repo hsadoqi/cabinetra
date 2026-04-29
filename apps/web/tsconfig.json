@@ -40,6 +40,18 @@
       ],
       "@cabinetra/feature-clients/*": [
         "../../packages/feature/clients/src/*"
+      ],
+      "@cabinetra/infrastructure-api-client": [
+        "../../packages/infrastructure/api-client/src/index.ts"
+      ],
+      "@cabinetra/infrastructure-api-client/*": [
+        "../../packages/infrastructure/api-client/src/*"
+      ],
+      "@cabinetra/infrastructure-types": [
+        "../../packages/infrastructure/types/src/index.ts"
+      ],
+      "@cabinetra/infrastructure-types/*": [
+        "../../packages/infrastructure/types/src/*"
       ]
     },
     "plugins": [
